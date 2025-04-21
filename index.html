@@ -1,79 +1,118 @@
 <!DOCTYPE html>
 <html lang="en" class="transition-colors duration-500">
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>Let's Lance</title>
-		<script src="https://cdn.tailwindcss.com"></script>
-		<script>
-			// Enable dark mode toggle with Tailwind
-			tailwind.config = {
-			darkMode: 'class'
-			};
-		</script>
-	</head>
-	<body class="bg-white dark:bg-gray-900 text-gray-800 dark:text-white transition-colors duration-500">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Let's Lance</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+    };
+  </script>
+</head>
+<body class="bg-white dark:bg-gray-900 text-gray-800 dark:text-white transition-colors duration-500">
 
-		<!-- Navbar -->
-		<header class="shadow-sm bg-white dark:bg-gray-800">
-			<div class="container mx-auto px-4 py-4 flex justify-between items-center">
-			<h1 class="text-2xl font-bold text-blue-600 dark:text-blue-400">Let's Lance</h1>
-			<nav class="space-x-4 hidden md:block">
-				<a href="index.html" class="hover:text-blue-600 dark:hover:text-blue-400">Home</a>
-				<a href="#" class="hover:text-blue-600 dark:hover:text-blue-400">About</a>
-				<a href="login-register.html" class="hover:text-blue-600 dark:hover:text-blue-400">Login/Register</a>
-				<a href="tailwind_cheat_sheet.html" class="hover:text-blue-600 dark:hover:text-blue-400">[tailwind cheatsheet]</a>
-				<a href="list_of_users.html" class="hover:text-blue-600 dark:hover:text-blue-400">[list users]</a>
-				<a href="dashboard.html" class="hover:text-blue-600 dark:hover:text-blue-400">[dashboard]</a>
+  <!-- Navbar -->
+  <header class="shadow-sm bg-white dark:bg-gray-800">
+    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+      <h1 class="text-2xl font-bold text-blue-600 dark:text-blue-400">Let's Lance</h1>
 
-			</nav>
-			<!-- Dark Mode Toggle -->
-			<button id="darkToggle" class="ml-4 p-2 rounded-md bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600">
-				<span id="themeIcon" class="text-xl">🌙</span>
-			</button>
-			</div>
-		</header>
+      <!-- Desktop Nav -->
+      <ul class="hidden md:flex space-x-4 items-center">
+        <li><a href="index.html" class="hover:text-blue-600 dark:hover:text-blue-400">Home</a></li>
+        <li><a href="#" class="hover:text-blue-600 dark:hover:text-blue-400">About</a></li>
+        <li><a href="login-register.html" class="hover:text-blue-600 dark:hover:text-blue-400">Login/Register</a></li>
+        <li><a href="tailwind_cheat_sheet.html" class="hover:text-blue-600 dark:hover:text-blue-400">[Tailwind Cheatsheet]</a></li>
+        <li><a href="list_of_users.html" class="hover:text-blue-600 dark:hover:text-blue-400">[List Users]</a></li>
+        <li><a href="dashboard.html" class="hover:text-blue-600 dark:hover:text-blue-400">[Dashboard]</a></li>
+        <li>
+          <button id="darkToggle" class="p-2 rounded-md bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600">
+            <span id="themeIcon" class="text-xl">🌙</span>
+          </button>
+        </li>
+      </ul>
 
-		<!-- Hero Section -->
-		<section class="text-center py-20 bg-gray-50 dark:bg-gray-800">
-			<div class="max-w-2xl mx-auto">
-			<h2 class="text-4xl md:text-5xl font-extrabold mb-6">Freelancing Made Easy</h2>
-			<p class="text-lg mb-6 text-gray-600 dark:text-gray-300">
-				Discover your dream projects or the perfect talent — all in one simple platform.
-			</p>
-			<a href="#" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-full transition">Get Started</a>
-			</div>
-		</section>
+      <!-- Mobile Toggle Button -->
+      <button id="mobileMenuBtn" class="md:hidden text-2xl focus:outline-none">
+        ☰
+      </button>
+    </div>
 
-		<!-- Footer -->
-		<footer class="bg-white dark:bg-gray-800 text-center text-sm py-6 text-gray-500 dark:text-gray-400">
-			&copy; 2025 Let's Lance. All rights reserved.
-		</footer>
+    <!-- Mobile Nav -->
+    <ul id="mobileMenu" class="md:hidden hidden flex-col space-y-2 px-4 pb-4">
+      <li><a href="index.html" class="block hover:text-blue-600 dark:hover:text-blue-400">Home</a></li>
+      <li><a href="#" class="block hover:text-blue-600 dark:hover:text-blue-400">About</a></li>
+      <li><a href="login-register.html" class="block hover:text-blue-600 dark:hover:text-blue-400">Login/Register</a></li>
+      <li><a href="tailwind_cheat_sheet.html" class="block hover:text-blue-600 dark:hover:text-blue-400">[Tailwind Cheatsheet]</a></li>
+      <li><a href="list_of_users.html" class="block hover:text-blue-600 dark:hover:text-blue-400">[List Users]</a></li>
+      <li><a href="dashboard.html" class="block hover:text-blue-600 dark:hover:text-blue-400">[Dashboard]</a></li>
+      <li>
+        <button id="darkToggleMobile" class="p-2 rounded-md bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600">
+          <span id="themeIconMobile" class="text-xl">🌙</span>
+        </button>
+      </li>
+    </ul>
+  </header>
 
-		<!-- Script for dark mode -->
-		<script>
-			// persist dark mode if set in localstorage
-			const icon = document.getElementById('themeIcon');
-			const applyIcon = () => {
-				if (document.documentElement.classList.contains('dark')) {
-				  icon.textContent = '☀️'; // sun icon for light mode
-				} else {
-				  icon.textContent = '🌙'; // moon icon for dark mode
-				}
-			};
-			const theme = localStorage.getItem('theme');
-			if (theme === 'dark') {
-			  document.documentElement.classList.add('dark');
-			}
-			applyIcon();
+  <!-- Hero Section -->
+  <section class="text-center py-20 bg-gray-50 dark:bg-gray-800">
+    <div class="max-w-2xl mx-auto">
+      <h2 class="text-4xl md:text-5xl font-extrabold mb-6">Freelancing Made Easy</h2>
+      <p class="text-lg mb-6 text-gray-600 dark:text-gray-300">
+        Discover your dream projects or the perfect talent — all in one simple platform.
+      </p>
+      <a href="#" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-full transition">Get Started</a>
+    </div>
+  </section>
 
-			const toggle = document.getElementById('darkToggle');
-			toggle.addEventListener('click', () => {
-			  document.documentElement.classList.toggle('dark');
-			  const isDark = document.documentElement.classList.contains('dark');
-			  localStorage.setItem('theme', isDark ? 'dark' : 'light');
-			  applyIcon();
-			});
-		</script>
-	</body>
+  <!-- Footer -->
+  <footer class="bg-white dark:bg-gray-800 text-center text-sm py-6 text-gray-500 dark:text-gray-400">
+    &copy; 2025 Let's Lance. All rights reserved.
+  </footer>
+
+  <!-- JS for Menu & Theme -->
+  <script>
+    const html = document.documentElement;
+    const themeIcon = document.getElementById("themeIcon");
+    const themeIconMobile = document.getElementById("themeIconMobile");
+
+    const updateThemeIcon = () => {
+      const isDark = html.classList.contains("dark");
+      themeIcon.textContent = isDark ? "☀️" : "🌙";
+      themeIconMobile.textContent = isDark ? "☀️" : "🌙";
+    };
+
+    const setTheme = () => {
+      const savedTheme = localStorage.getItem("theme");
+      if (savedTheme === "dark") {
+        html.classList.add("dark");
+      }
+      updateThemeIcon();
+    };
+
+    // Initial load
+    setTheme();
+
+    document.getElementById("darkToggle").addEventListener("click", () => {
+      html.classList.toggle("dark");
+      localStorage.setItem("theme", html.classList.contains("dark") ? "dark" : "light");
+      updateThemeIcon();
+    });
+
+    document.getElementById("darkToggleMobile").addEventListener("click", () => {
+      html.classList.toggle("dark");
+      localStorage.setItem("theme", html.classList.contains("dark") ? "dark" : "light");
+      updateThemeIcon();
+    });
+
+    // Mobile menu toggle
+    const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+    const mobileMenu = document.getElementById("mobileMenu");
+
+    mobileMenuBtn.addEventListener("click", () => {
+      mobileMenu.classList.toggle("hidden");
+    });
+  </script>
+</body>
 </html>
