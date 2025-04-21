@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<script src="https://cdn.tailwindcss.com"></script>
+		<title>List of users</title>
+	</head>
+	<body>
+		<h1 class="text-4xl font-bold text-gray-800 mb-4">List of users</h1>
+
+		<a class="" href="index.html">Home</a>
+		<table class="min-w-full divide-y divide-gray-200 border border-gray-300 rounded-lg overflow-hidden shadow-md" id="userTable">
+			<thead class="bg-gray-100 text-gray-700 uppercase text-sm tracking-wider">
+			  <tr>
+				<th class="w-auto text-left">ID</th>
+				<th class="w-auto text-left">Name</th>
+				<th class="w-auto text-left">Email</th>
+				<th class="w-auto text-left">Role</th>
+				<th class="w-auto text-left">Created At</th>
+				<th class="w-auto text-left">Actions</th>
+			  </tr>
+			</thead>
+			<tbody class="bg-white divide-y divide-gray-200">			 
+			  <!-- More rows can go here -->
+			</tbody>
+		</table>		  
+		<script>
+			//fetch user data from api
+			//display user data in table
+			//TEMPORARY WEB PAGE
+			const API_BASE = "https://gs341997.pythonanywhere.com/";
+			const userTable = document.getElementById("userTable");
+			async function fetchUsers() {
+				const res = await fetch(`${API_BASE}/users`, {
+					method: "GET",
+					headers: { "Content-Type": "application/json" },
+					// GET requests typically don’t have a body
+					// body: JSON.stringify({})
+				});
+		
+				const data = await res.json();
+		
+				if (res.ok) {
+					console.log("Data fetched successfully!");
+					data.forEach(user => {
+						const row = document.createElement("tr");
+						const deleteBtn = document.createElement("button");
+						deleteBtn.className = "bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded";
+						deleteBtn.textContent = "Delete";
+						deleteBtn.addEventListener("click", () => deleteUser(user.id));
+						row.classList.add("hover:bg-gray-50", "transition");
+						row.innerHTML = `
+							<td class="w-auto whitespace-nowrap">${user.id}</td>
+							<td class="w-auto whitespace-nowrap">${user.username}</td>
+							<td class="w-auto whitespace-nowrap">${user.email}</td>
+							<td class="w-auto whitespace-nowrap">${user.role}</td>
+							<td class="w-auto whitespace-nowrap">${user.created_at}</td>				
+						`;
+						row.appendChild(deleteBtn);
+						userTable.appendChild(row);
+					});
+				} else {
+					alert(data.message || "Data fetch failed.");
+				}
+			}
+
+			async function deleteUser(userId) {
+				const res = await fetch(`${API_BASE}/users/delete/${userId}`, {
+					method: "DELETE",
+					headers: { "Content-Type": "application/json" },
+					// GET requests typically don’t have a body
+					//body: JSON.stringify({})
+				});
+		
+				const data = await res.json();
+		
+				if (res.ok) {
+					console.log("Data deleted successfully!");
+					location.reload(); // reload the page
+				} else {
+					alert(data.message || "Data delete failed.");
+				}
+			}
+		
+			fetchUsers(); // call the async function
+		</script>
+	</body>
+</html>
