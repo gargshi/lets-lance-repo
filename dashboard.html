@@ -11,7 +11,7 @@
 		<!-- Navbar -->
 		<header class="bg-white dark:bg-gray-800 shadow p-4 flex justify-between items-center">
 			<h1 class="text-xl font-bold">Let's Lance</h1>
-			<button class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">Logout</button>
+			<button class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600" id="logoutButton">Logout</button>
 		</header>
 
 		<!-- Main Grid Layout -->
@@ -68,6 +68,13 @@
 				userEmail.textContent = userData.email;
 				userRole.textContent = userData.role;
 			}
+
+			const logoutButton = document.getElementById('logoutButton');
+			logoutButton.addEventListener('click', () => {
+				localStorage.removeItem('user');
+				localStorage.removeItem('access_token');
+				window.location.href = 'login-register.html';
+			});
 		</script>
 	</body>
 </html>
