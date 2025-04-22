@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" class="bg-gray-100">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tailwind CSS Cheat Sheet</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="p-6 text-gray-800 font-sans">
+  <h1 class="text-4xl font-bold mb-4 text-blue-600">Tailwind CSS Cheat Sheet</h1>
+
+  <!-- Section -->
+  <div class="grid gap-8 md:grid-cols-2">
+
+    <!-- Typography -->
+    <div class="bg-white rounded-xl shadow p-5">
+      <h2 class="text-xl font-semibold text-purple-600 mb-2">Typography</h2>
+      <ul class="space-y-1">
+        <li><code class="font-mono text-sm bg-gray-100 p-1 rounded">text-lg</code> — Large text</li>
+        <li><code class="font-mono text-sm bg-gray-100 p-1 rounded">font-bold</code> — Bold text</li>
+        <li><code class="font-mono text-sm bg-gray-100 p-1 rounded">text-gray-700</code> — Gray text color</li>
+        <li><code class="font-mono text-sm bg-gray-100 p-1 rounded">tracking-wide</code> — Letter spacing</li>
+        <li><code class="font-mono text-sm bg-gray-100 p-1 rounded">truncate</code> — Ellipsis overflow</li>
+      </ul>
+    </div>
+
+    <!-- Spacing -->
+    <div class="bg-white rounded-xl shadow p-5">
+      <h2 class="text-xl font-semibold text-green-600 mb-2">Spacing</h2>
+      <ul class="space-y-1">
+        <li><code class="font-mono text-sm bg-gray-100 p-1 rounded">m-4</code> — Margin 1rem</li>
+        <li><code class="font-mono text-sm bg-gray-100 p-1 rounded">px-6</code> — Padding X 1.5rem</li>
+        <li><code class="font-mono text-sm bg-gray-100 p-1 rounded">space-y-4</code> — Vertical gap between children</li>
+      </ul>
+    </div>
+
+    <!-- Colors & Backgrounds -->
+    <div class="bg-white rounded-xl shadow p-5">
+      <h2 class="text-xl font-semibold text-pink-600 mb-2">Colors</h2>
+      <ul class="space-y-1">
+        <li><code class="font-mono text-sm bg-gray-100 p-1 rounded">bg-blue-500</code> — Blue background</li>
+        <li><code class="font-mono text-sm bg-gray-100 p-1 rounded">text-white</code> — White text</li>
+        <li><code class="font-mono text-sm bg-gray-100 p-1 rounded">hover:bg-blue-600</code> — Hover effect</li>
+        <li><code class="font-mono text-sm bg-gray-100 p-1 rounded">bg-gradient-to-r from-green-400 to-blue-500</code></li>
+      </ul>
+    </div>
+
+    <!-- Flex & Layout -->
+    <div class="bg-white rounded-xl shadow p-5">
+      <h2 class="text-xl font-semibold text-indigo-600 mb-2">Flexbox & Layout</h2>
+      <ul class="space-y-1">
+        <li><code class="font-mono text-sm bg-gray-100 p-1 rounded">flex</code> — Make element flex container</li>
+        <li><code class="font-mono text-sm bg-gray-100 p-1 rounded">justify-between</code> — Space between items</li>
+        <li><code class="font-mono text-sm bg-gray-100 p-1 rounded">items-center</code> — Center vertically</li>
+        <li><code class="font-mono text-sm bg-gray-100 p-1 rounded">gap-4</code> — Gap between children</li>
+      </ul>
+    </div>
+
+    <!-- Buttons & Interactions -->
+    <div class="bg-white rounded-xl shadow p-5">
+      <h2 class="text-xl font-semibold text-yellow-600 mb-2">Interaction</h2>
+      <ul class="space-y-1">
+        <li><code class="font-mono text-sm bg-gray-100 p-1 rounded">cursor-pointer</code> — Pointer cursor</li>
+        <li><code class="font-mono text-sm bg-gray-100 p-1 rounded">transition duration-300</code> — Smooth animation</li>
+        <li><code class="font-mono text-sm bg-gray-100 p-1 rounded">focus:outline-none</code> — Remove focus ring</li>
+        <li><code class="font-mono text-sm bg-gray-100 p-1 rounded">hover:scale-105</code> — Scale on hover</li>
+      </ul>
+    </div>
+
+    <!-- Responsive Design -->
+    <div class="bg-white rounded-xl shadow p-5">
+      <h2 class="text-xl font-semibold text-red-600 mb-2">Responsive</h2>
+      <ul class="space-y-1">
+        <li><code class="font-mono text-sm bg-gray-100 p-1 rounded">sm:text-sm</code> — Small screen text size</li>
+        <li><code class="font-mono text-sm bg-gray-100 p-1 rounded">md:w-1/2</code> — Medium screen width 50%</li>
+        <li><code class="font-mono text-sm bg-gray-100 p-1 rounded">lg:flex-row</code> — Flex direction row on large screens</li>
+        <li><code class="font-mono text-sm bg-gray-100 p-1 rounded">xl:hidden</code> — Hidden on extra large screens</li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>

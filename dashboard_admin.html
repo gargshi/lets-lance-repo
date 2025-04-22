@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 dark:bg-gray-800 transition duration-500">
+
+    <!-- Sidebar -->
+    <div class="flex h-screen">
+        <div class="bg-gray-800 text-white w-64 p-5 space-y-6">
+            <div class="text-xl font-bold">Let's Lance</div>
+            <div class="space-y-4">
+                <a href="#" class="block text-gray-400 hover:text-white">Home</a>
+                <a href="#" class="block text-gray-400 hover:text-white">Profile</a>
+                <a href="#" class="block text-gray-400 hover:text-white">Users</a>
+                <a href="#" class="block text-gray-400 hover:text-white">Settings</a>
+                <button onclick="toggleDarkMode()" class="bg-gray-700 p-2 rounded-md w-full mt-4">Toggle Dark Mode</button>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="flex-1 p-6">
+            <!-- Welcome Section -->
+            <div class="flex justify-between items-center mb-6">
+                <h1 class="text-3xl font-semibold text-gray-900 dark:text-white">Dashboard</h1>
+                <button onclick="logoutUser()" class="bg-red-500 text-white px-4 py-2 rounded">Logout</button>
+            </div>
+
+            <!-- Stats Section -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-white dark:bg-gray-700 p-5 rounded-lg shadow-md">
+                    <h3 class="text-xl font-medium text-gray-700 dark:text-gray-300">Total Users</h3>
+                    <p class="text-4xl font-bold text-gray-900 dark:text-white">120</p>
+                </div>
+                <div class="bg-white dark:bg-gray-700 p-5 rounded-lg shadow-md">
+                    <h3 class="text-xl font-medium text-gray-700 dark:text-gray-300">Active Users</h3>
+                    <p class="text-4xl font-bold text-gray-900 dark:text-white">100</p>
+                </div>
+                <div class="bg-white dark:bg-gray-700 p-5 rounded-lg shadow-md">
+                    <h3 class="text-xl font-medium text-gray-700 dark:text-gray-300">New Signups</h3>
+                    <p class="text-4xl font-bold text-gray-900 dark:text-white">20</p>
+                </div>
+            </div>
+
+            <!-- Recent Activity Section -->
+            <div class="mt-6">
+                <h2 class="text-2xl font-semibold text-gray-900 dark:text-white">Recent Activity</h2>
+                <ul class="mt-4 space-y-3">
+                    <li class="bg-white dark:bg-gray-700 p-4 rounded-lg shadow-md">
+                        <p class="font-semibold text-gray-800 dark:text-white">User John Doe logged in</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm">10 minutes ago</p>
+                    </li>
+                    <li class="bg-white dark:bg-gray-700 p-4 rounded-lg shadow-md">
+                        <p class="font-semibold text-gray-800 dark:text-white">User Jane Smith signed up</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm">1 hour ago</p>
+                    </li>
+                    <li class="bg-white dark:bg-gray-700 p-4 rounded-lg shadow-md">
+                        <p class="font-semibold text-gray-800 dark:text-white">User Emily Johnson updated profile</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm">2 hours ago</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Toggle Dark Mode
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark');
+            localStorage.setItem('darkMode', document.body.classList.contains('dark') ? 'enabled' : 'disabled');
+        }
+
+        // Set Dark Mode based on previous session
+        if(localStorage.getItem('darkMode') === 'enabled') {
+            document.body.classList.add('dark');
+        }
+
+        // Logout Function (simple implementation)
+        function logoutUser() {
+            alert("You have logged out.");
+            // Add logic for logout (clear tokens, redirect, etc.)
+        }
+    </script>
+</body>
+</html>
