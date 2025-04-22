@@ -122,7 +122,7 @@ lform.addEventListener("submit", async (e) => {
 	const email = document.getElementById("loginEmail").value.trim();
 	const password = document.getElementById("loginPassword").value.trim();
 
-	const res = await fetch(`${API_BASE}/login`, {
+	const res = await fetch(`${API_BASE}/json_login`, {
 		method: "POST",
 		headers: { "Content-Type": "application/json" },
 		body: JSON.stringify({ email, password })
@@ -130,10 +130,31 @@ lform.addEventListener("submit", async (e) => {
 
 	const data = await res.json();
 	if (res.ok) {
+		access_token=data.token
 		alert("Login successful!");
+		console.log("Access token:", access_token);
+		fetchDashboard(access_token);
 		// store token if returned: localStorage.setItem("token", data.token)
 		// redirect if needed
 	} else {
 		alert(data.message || "Login failed.");
 	}
 });
+
+//FETCH DASHBOARD
+async function fetchDashboard(access_token) {
+	const res = await fetch(`${API_BASE}/dashboard`, {
+		method: "GET",
+		headers: { "Content-Type": "application/json", "Authorization": `Bearer ${access_token}` }
+	});
+	const data = await res.json();
+	if (res.ok) {
+		console.log(data.message);
+		let user=data.user
+		console.log(user)
+		localStorage.setItem("user", JSON.stringify(user));
+		location.href = "dashboard.html";
+	} else {
+		alert(data.message || "Data fetch failed.");
+	}
+}

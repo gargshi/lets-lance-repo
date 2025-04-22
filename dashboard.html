@@ -1,62 +1,73 @@
 <!DOCTYPE html>
 <html lang="en" class="bg-gray-50 dark:bg-gray-900">
-<head>
-	<meta charset="UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>Freelancer Dashboard - Let's Lance</title>
-	<script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="text-gray-800 dark:text-gray-100">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Freelancer Dashboard - Let's Lance</title>
+		<script src="https://cdn.tailwindcss.com"></script>
+	</head>
+	<body class="text-gray-800 dark:text-gray-100">
 
-	<!-- Navbar -->
-	<header class="bg-white dark:bg-gray-800 shadow p-4 flex justify-between items-center">
-		<h1 class="text-xl font-bold">Let's Lance</h1>
-		<button class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">Logout</button>
-	</header>
+		<!-- Navbar -->
+		<header class="bg-white dark:bg-gray-800 shadow p-4 flex justify-between items-center">
+			<h1 class="text-xl font-bold">Let's Lance</h1>
+			<button class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">Logout</button>
+		</header>
 
-	<!-- Main Grid Layout -->
-	<main class="p-6 max-w-7xl mx-auto">
-		<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+		<!-- Main Grid Layout -->
+		<main class="p-6 max-w-7xl mx-auto">
+			<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
 
-			<!-- Profile Summary -->
-			<section class="bg-white dark:bg-gray-800 rounded-xl shadow p-6">
-				<h2 class="text-lg font-semibold mb-2">👤 Profile</h2>
-				<p><strong>Name:</strong> John Doe</p>
-				<p><strong>Email:</strong> john@example.com</p>
-				<p><strong>Role:</strong> Freelancer</p>
-			</section>
+				<!-- Profile Summary -->
+				<section class="bg-white dark:bg-gray-800 rounded-xl shadow p-6">
+					<h2 class="text-lg font-semibold mb-2">👤 Profile</h2>
+					<p><strong>Name:</strong> <span id="userName"></span></p>
+					<p><strong>Email:</strong> <span id="userEmail"></span></p>
+					<p><strong>Role:</strong> <span id="userRole"></span></p>
+				</section>
 
-			<!-- Active Projects -->
-			<section class="bg-white dark:bg-gray-800 rounded-xl shadow p-6">
-				<h2 class="text-lg font-semibold mb-2">📁 Active Projects</h2>
-				<ul class="list-disc list-inside text-sm space-y-1">
-					<li>Landing Page for TechCo</li>
-					<li>Translation - 3 pages</li>
-					<li>React Dashboard</li>
-				</ul>
-			</section>
+				<!-- Active Projects -->
+				<section class="bg-white dark:bg-gray-800 rounded-xl shadow p-6">
+					<h2 class="text-lg font-semibold mb-2">📁 Active Projects</h2>
+					<ul class="list-disc list-inside text-sm space-y-1">
+						<li>Landing Page for TechCo</li>
+						<li>Translation - 3 pages</li>
+						<li>React Dashboard</li>
+					</ul>
+				</section>
 
-			<!-- Notifications -->
-			<section class="bg-white dark:bg-gray-800 rounded-xl shadow p-6">
-				<h2 class="text-lg font-semibold mb-2">🔔 Notifications</h2>
-				<ul class="space-y-2 text-sm">
-					<li class="bg-yellow-100 dark:bg-yellow-700 px-3 py-2 rounded">New comment on "TechCo".</li>
-					<li class="bg-green-100 dark:bg-green-700 px-3 py-2 rounded">Milestone payment received.</li>
-					<li class="bg-blue-100 dark:bg-blue-700 px-3 py-2 rounded">New gig match found!</li>
-				</ul>
-			</section>
+				<!-- Notifications -->
+				<section class="bg-white dark:bg-gray-800 rounded-xl shadow p-6">
+					<h2 class="text-lg font-semibold mb-2">🔔 Notifications</h2>
+					<ul class="space-y-2 text-sm">
+						<li class="bg-yellow-100 dark:bg-yellow-700 px-3 py-2 rounded">New comment on "TechCo".</li>
+						<li class="bg-green-100 dark:bg-green-700 px-3 py-2 rounded">Milestone payment received.</li>
+						<li class="bg-blue-100 dark:bg-blue-700 px-3 py-2 rounded">New gig match found!</li>
+					</ul>
+				</section>
 
-			<!-- Wallet Summary -->
-			<section class="bg-white dark:bg-gray-800 rounded-xl shadow p-6 flex flex-col justify-between">
-				<div>
-					<h2 class="text-lg font-semibold">💰 Wallet</h2>
-					<p class="text-2xl font-bold mt-2">$245.50</p>
-				</div>
-				<button class="bg-blue-600 text-white mt-4 px-4 py-2 rounded hover:bg-blue-700">Withdraw</button>
-			</section>
+				<!-- Wallet Summary -->
+				<section class="bg-white dark:bg-gray-800 rounded-xl shadow p-6 flex flex-col justify-between">
+					<div>
+						<h2 class="text-lg font-semibold">💰 Wallet</h2>
+						<p class="text-2xl font-bold mt-2">$245.50</p>
+					</div>
+					<button class="bg-blue-600 text-white mt-4 px-4 py-2 rounded hover:bg-blue-700">Withdraw</button>
+				</section>
 
-		</div>
-	</main>
+			</div>
+		</main>
+		<script defer>
+			const userName = document.getElementById('userName');
+			const userEmail = document.getElementById('userEmail');
+			const userRole = document.getElementById('userRole');
 
-</body>
+			const userData = JSON.parse(localStorage.getItem('user'));
+			if (userData) {
+				userName.textContent = userData.name;
+				userEmail.textContent = userData.email;
+				userRole.textContent = userData.role;
+			}
+		</script>
+	</body>
 </html>
