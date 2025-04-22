@@ -3,7 +3,6 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<meta http-equiv="Cache-Control" content="no-store" />
 		<title>Freelancer Dashboard - Let's Lance</title>
 		<script src="https://cdn.tailwindcss.com"></script>
 	</head>
@@ -58,6 +57,17 @@
 
 			</div>
 		</main>
+		<script>
+			window.addEventListener('pageshow', (event) => {
+				if (event.persisted) {
+				  // Page was loaded from bfcache (back/forward cache)
+				  const token = localStorage.getItem('access_token');
+				  if (!token) {
+					window.location.href = '/login-register.html';
+				  }
+				}
+			  });
+		</script>
 		<script defer>
 			if (!localStorage.getItem('access_token') && !localStorage.getItem('user')) 
 			{				
