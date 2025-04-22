@@ -1,0 +1,31 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+venv/
+.env
+*.env
+
+# Flask cache
+instance/
+*.sqlite3
+*.db
+*.log
+
+# VSCode settings
+.vscode/
+
+# PythonAnywhere specific (if you upload via ZIP or git)
+*.tar.gz
+*.zip
+
+# Mac system file
+.DS_Store
+
+# Pytest cache
+.pytest_cache/
+
+# Migrations (optional – if you're generating them manually)
+migrations/
