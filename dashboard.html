@@ -58,6 +58,10 @@
 			</div>
 		</main>
 		<script defer>
+			if (!localStorage.getItem('access_token') && !localStorage.getItem('user')) 
+			{				
+				location.href = 'login-register.html';
+			}
 			const userName = document.getElementById('userName');
 			const userEmail = document.getElementById('userEmail');
 			const userRole = document.getElementById('userRole');
@@ -73,7 +77,7 @@
 			logoutButton.addEventListener('click', () => {
 				localStorage.removeItem('user');
 				localStorage.removeItem('access_token');
-				window.location.href = 'login-register.html';
+				location.href = 'login-register.html';
 			});
 		</script>
 	</body>
