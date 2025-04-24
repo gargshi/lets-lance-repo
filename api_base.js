@@ -153,6 +153,7 @@ async function fetchDashboard(access_token) {
 		let user=data.user
 		console.log(user)
 		localStorage.setItem("user", JSON.stringify(user));
+		localStorage.setItem("access_token", access_token);
 		location.href = "dashboard.html";
 	} else {
 		alert(data.message || "Data fetch failed.");
