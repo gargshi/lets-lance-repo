@@ -37,8 +37,39 @@
 				</section>
 
 				<!-- Available Projects in Lobby -->
-				<section class="bg-white dark:bg-gray-800 rounded-xl shadow p-6">
+				<!-- <section class="bg-white dark:bg-gray-800 rounded-xl shadow p-6">
 					<h2 class="text-lg font-semibold mb-2">📁 Active Lobby Projects</h2>
+					<table class="min-w-full divide-y divide-gray-200" id="lobbyTable">
+						<thead>
+							<tr>
+								<th class="text-left">Title</th>
+								<th class="text-left">Client</th>
+								<th class="text-left">Status</th>
+							</tr>
+						</thead>
+						<tbody id="lobbyProjects">
+
+						</tbody>
+					</table>
+					<ul class="list-disc list-inside text-sm space-y-1" id="availableProjects">						
+					</ul>
+				</section> -->
+
+				<!-- Available Projects in Lobby -->
+				<section class="bg-white dark:bg-gray-800 rounded-xl shadow p-6 lg:col-span-2">
+					<h2 class="text-lg font-semibold mb-2">📁 Active Lobby Projects</h2>
+					<table class="min-w-full divide-y divide-gray-200" id="lobbyTable">
+						<thead>
+							<tr>
+								<th class="text-left">Title</th>
+								<th class="text-left">Description</th>
+								<th class="text-left">Client</th>
+								<th class="text-left">Status</th>
+							</tr>
+						</thead>
+						<tbody id="lobbyProjects">
+						</tbody>
+					</table>
 					<ul class="list-disc list-inside text-sm space-y-1" id="availableProjects">						
 					</ul>
 				</section>
@@ -101,16 +132,23 @@
 				userRole.textContent = userData.role;
 			}
 
-			const availableProjects = document.getElementById('availableProjects');
+			//const availableProjects = document.getElementById('availableProjects');
+			const lobbyProjects = document.getElementById('lobbyProjects');
 			async function fetchProjects() {
 				const res = await fetch(`${API_BASE_URL}/projects`, {
 					method: 'GET',
 				});
 				const projects = await res.json();
 				projects.forEach(project => {
-					const li = document.createElement('li');
-					li.textContent = project.title + ' - ' + project.created_by;
-					availableProjects.appendChild(li);
+					//const li = document.createElement('li');
+					const trc=document.createElement('tr');
+					trc.innerHTML=`
+						<td class="w-auto whitespace-nowrap">${project.title}</td>
+						<td class="w-auto whitespace-nowrap">${project.description}</td>
+						<td class="w-auto whitespace-nowrap">${project.created_by}</td>
+						<td class="w-auto whitespace-nowrap">${project.status}</td>
+					`;
+					lobbyProjects.appendChild(trc);
 				});
 			}
 			fetchProjects();		
