@@ -5,8 +5,30 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Freelancer Dashboard - Let's Lance</title>
 		<script src="https://cdn.tailwindcss.com"></script>
+		<style>
+			.font-arial {
+			  font-family: Arial, sans-serif;
+			}
+		</style>
 	</head>
 	<body class="text-gray-800 dark:text-gray-100">
+		<!-- Project Detail Modal -->
+		<div id="projectModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black bg-opacity-50">
+			<div class="bg-white dark:bg-gray-800 rounded-xl shadow-xl p-6 w-full max-w-lg">
+				<div class="flex justify-between items-center mb-4">
+					<h3 class="text-xl font-semibold" id="modalTitle">Project Title</h3>
+					<button onclick="closeModal()" class="text-gray-500 hover:text-gray-800">&times;</button>
+				</div>
+				<hr>
+				<br>
+				<p class="text-sm text-gray-600 dark:text-gray-300 mb-2" id="modalDesc">Description here...</p>
+				<p class="text-sm text-gray-500 mb-2"><strong>Client:</strong> <span id="modalClient">Client Name</span></p>
+				<p class="text-sm"><strong>Status:</strong> <span id="modalStatus">Open</span></p>
+				<br>
+				<hr>
+				<button class="bg-blue-600 text-white mt-4 px-4 py-2 rounded hover:bg-blue-700" id="bidButton">Bid on Project</button>
+			</div>
+		</div>
 
 		<!-- Navbar -->
 		<header class="bg-white dark:bg-gray-800 shadow p-4 flex justify-between items-center">
@@ -15,7 +37,7 @@
 		</header>
 
 		<!-- Main Grid Layout -->
-		<main class="p-6 max-w-7xl mx-auto">
+		<main class="font-arial text-gray-300 p-6 max-w-7xl mx-auto">
 			<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
 
 				<!-- Profile Summary -->
@@ -24,59 +46,13 @@
 					<p><strong>Name:</strong> <span id="userName"></span></p>
 					<p><strong>Email:</strong> <span id="userEmail"></span></p>
 					<p><strong>Role:</strong> <span id="userRole"></span></p>
+					<button class="bg-red-600 text-white mt-4 px-4 py-2 rounded hover:bg-blue-700">Update Profile</button>
 				</section>
-
-				<!-- Active Projects -->
-				<section class="bg-white dark:bg-gray-800 rounded-xl shadow p-6">
-					<h2 class="text-lg font-semibold mb-2">📁 Active Projects</h2>
-					<ul class="list-disc list-inside text-sm space-y-1">
-						<li>Landing Page for TechCo</li>
-						<li>Translation - 3 pages</li>
-						<li>React Dashboard</li>
-					</ul>
-				</section>
-
-				<!-- Available Projects in Lobby -->
-				<!-- <section class="bg-white dark:bg-gray-800 rounded-xl shadow p-6">
-					<h2 class="text-lg font-semibold mb-2">📁 Active Lobby Projects</h2>
-					<table class="min-w-full divide-y divide-gray-200" id="lobbyTable">
-						<thead>
-							<tr>
-								<th class="text-left">Title</th>
-								<th class="text-left">Client</th>
-								<th class="text-left">Status</th>
-							</tr>
-						</thead>
-						<tbody id="lobbyProjects">
-
-						</tbody>
-					</table>
-					<ul class="list-disc list-inside text-sm space-y-1" id="availableProjects">						
-					</ul>
-				</section> -->
-
-				<!-- Available Projects in Lobby -->
-				<section class="bg-white dark:bg-gray-800 rounded-xl shadow p-6 lg:col-span-2">
-					<h2 class="text-lg font-semibold mb-2">📁 Active Lobby Projects</h2>
-					<table class="min-w-full divide-y divide-gray-200" id="lobbyTable">
-						<thead>
-							<tr>
-								<th class="text-left">Title</th>
-								<th class="text-left">Description</th>
-								<th class="text-left">Client</th>
-								<th class="text-left">Status</th>
-							</tr>
-						</thead>
-						<tbody id="lobbyProjects">
-						</tbody>
-					</table>
-					<ul class="list-disc list-inside text-sm space-y-1" id="availableProjects">						
-					</ul>
-				</section>
-
+				
 				<!-- Notifications -->
 				<section class="bg-white dark:bg-gray-800 rounded-xl shadow p-6">
 					<h2 class="text-lg font-semibold mb-2">🔔 Notifications</h2>
+					
 					<ul class="space-y-2 text-sm">
 						<li class="bg-yellow-100 dark:bg-yellow-700 px-3 py-2 rounded">New comment on "TechCo".</li>
 						<li class="bg-green-100 dark:bg-green-700 px-3 py-2 rounded">Milestone payment received.</li>
@@ -88,19 +64,58 @@
 				<section class="bg-white dark:bg-gray-800 rounded-xl shadow p-6 flex flex-col justify-between">
 					<div>
 						<h2 class="text-lg font-semibold">💰 Wallet</h2>
+						<hr>
 						<p class="text-2xl font-bold mt-2">$245.50</p>
 					</div>
-					<button class="bg-blue-600 text-white mt-4 px-4 py-2 rounded hover:bg-blue-700">Withdraw</button>
+					<button class="bg-red-600 text-white mt-4 px-4 py-2 rounded hover:bg-blue-700">Withdraw</button>
 				</section>
 
+				<!-- Active Projects -->
+				<section class="bg-white dark:bg-gray-800 rounded-xl shadow p-6 lg:col-span-2">
+					<h2 class="text-lg font-semibold mb-2">📁 Active Projects</h2>
+					<ul class="list-disc list-inside text-sm space-y-1">
+						<li>Landing Page for TechCo</li>
+						<li>Translation - 3 pages</li>
+						<li>React Dashboard</li>
+					</ul>
+				</section>	
+				
 				<!-- Actions -->
 				<section class="bg-white dark:bg-gray-800 rounded-xl shadow p-6 flex flex-col justify-between">
 					<div>
 						<h2 class="text-lg font-semibold">Actions</h2>
+						<hr>
 					</div>
 					<button class="bg-blue-600 text-white mt-4 px-4 py-2 rounded hover:bg-blue-700" id="addProjectButton">Add Project</button>
 				</section>
 
+
+				<!-- Available Projects in Lobby -->
+				<section class="bg-white dark:bg-gray-800 rounded-xl shadow p-6 lg:col-span-3">
+					<div class="flex items-center gap-4 mb-5">
+						<h2 class="text-lg font-semibold">📁 Active Lobby Projects</h2>
+						<button class="bg-blue-600 text-white mt-1 px-1 py-1 rounded hover:bg-blue-700" id="refreshProjectButton">Refresh</button>
+					</div>
+					<hr>					
+					<table class="min-w-full divide-y divide-gray-200 " id="lobbyTable">
+						<thead>
+							<tr>
+								<th class="text-left">Title</th>
+								<!-- <th class="text-left">Description</th> -->
+								<th class="text-left">Client</th>
+								<th class="text-left">Posted At</th>
+								<th class="text-left">Status</th>
+								<th class="text-left">Budget</th>
+							</tr>
+						</thead>
+						<tbody id="lobbyProjects">
+						</tbody>
+					</table>
+					<ul class="list-disc list-inside text-sm space-y-1" id="availableProjects">						
+					</ul>
+				</section>		
+
+				
 			</div>
 		</main>
 		<script>
@@ -135,6 +150,7 @@
 			//const availableProjects = document.getElementById('availableProjects');
 			const lobbyProjects = document.getElementById('lobbyProjects');
 			async function fetchProjects() {
+				lobbyProjects.innerHTML = '';
 				const res = await fetch(`${API_BASE_URL}/projects`, {
 					method: 'GET',
 				});
@@ -144,14 +160,27 @@
 					const trc=document.createElement('tr');
 					trc.innerHTML=`
 						<td class="w-auto whitespace-nowrap">${project.title}</td>
-						<td class="w-auto whitespace-nowrap">${project.description}</td>
 						<td class="w-auto whitespace-nowrap">${project.created_by}</td>
+						<td class="w-auto whitespace-nowrap">${project.created_at}</td>
 						<td class="w-auto whitespace-nowrap">${project.status}</td>
+						<td class="w-auto whitespace-nowrap">${project.budget}</td>
+						<td class="w-auto whitespace-nowrap">
+							<button class="bg-blue-600 text-white px-1 py-0 rounded hover:bg-blue-700" onclick='openModal(${JSON.stringify(project)})''>View</button>
+						</td>
 					`;
 					lobbyProjects.appendChild(trc);
 				});
 			}
-			fetchProjects();		
+			fetchProjects();
+
+			const refreshProjectButton = document.getElementById('refreshProjectButton');
+			refreshProjectButton.addEventListener('click', () => {
+				lobbyProjects.innerHTML = 'Refreshing..';
+				//delay
+				setTimeout(() => {
+					fetchProjects();
+				}, 5000);
+			});
 
 			const logoutButton = document.getElementById('logoutButton');
 			logoutButton.addEventListener('click', () => {
@@ -164,6 +193,31 @@
 			addProjectButton.addEventListener('click', () => {
 				location.href = 'add_project.html';
 			});
+
+			function openModal(project) {
+				document.getElementById('modalTitle').textContent = project.title;
+				document.getElementById('modalDesc').textContent = project.description;
+				document.getElementById('modalClient').textContent = project.created_by;
+				document.getElementById('modalStatus').textContent = project.status;
+			
+				const modal = document.getElementById('projectModal');
+				modal.classList.remove('hidden');
+				modal.classList.add('flex');
+				if (project.status === 'active') {					
+					if (userData.name === project.created_by) {
+						document.getElementById('bidButton').textContent = 'Delete Project';						
+					}
+					else {
+						document.getElementById('bidButton').textContent = 'Bid on Project';
+					}
+				}
+			  }
+			
+			  function closeModal() {
+				const modal = document.getElementById('projectModal');
+				modal.classList.add('hidden');
+				modal.classList.remove('flex');
+			  }
 		</script>
 	</body>
 </html>
