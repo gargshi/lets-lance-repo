@@ -24,6 +24,7 @@
 				<p class="text-sm text-gray-600 dark:text-gray-300 mb-2" id="modalDesc">Description here...</p>
 				<p class="text-sm text-gray-500 mb-2"><strong>Client:</strong> <span id="modalClient">Client Name</span></p>
 				<p class="text-sm"><strong>Status:</strong> <span id="modalStatus">Open</span></p>
+				<p class="text-sm"><strong>Posted on:</strong> <span id="modalPostedDate">Date</span></p>
 				<br>
 				<hr>
 				<button class="bg-blue-600 text-white mt-4 px-4 py-2 rounded hover:bg-blue-700" id="bidButton">Bid on Project</button>
@@ -39,61 +40,15 @@
 		<!-- Main Grid Layout -->
 		<main class="font-arial text-gray-300 p-6 max-w-7xl mx-auto">
 			<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-
-				<!-- Profile Summary -->
-				<section class="bg-white dark:bg-gray-800 rounded-xl shadow p-6">
-					<h2 class="text-lg font-semibold mb-2">👤 Profile</h2>
-					<p><strong>Name:</strong> <span id="userName"></span></p>
-					<p><strong>Email:</strong> <span id="userEmail"></span></p>
-					<p><strong>Role:</strong> <span id="userRole"></span></p>
-					<button class="bg-red-600 text-white mt-4 px-4 py-2 rounded hover:bg-blue-700">Update Profile</button>
-				</section>
-				
-				<!-- Notifications -->
-				<section class="bg-white dark:bg-gray-800 rounded-xl shadow p-6">
-					<h2 class="text-lg font-semibold mb-2">🔔 Notifications</h2>
-					
-					<ul class="space-y-2 text-sm">
-						<li class="bg-yellow-100 dark:bg-yellow-700 px-3 py-2 rounded">New comment on "TechCo".</li>
-						<li class="bg-green-100 dark:bg-green-700 px-3 py-2 rounded">Milestone payment received.</li>
-						<li class="bg-blue-100 dark:bg-blue-700 px-3 py-2 rounded">New gig match found!</li>
-					</ul>
-				</section>
-
-				<!-- Wallet Summary -->
-				<section class="bg-white dark:bg-gray-800 rounded-xl shadow p-6 flex flex-col justify-between">
-					<div>
-						<h2 class="text-lg font-semibold">💰 Wallet</h2>
-						<hr>
-						<p class="text-2xl font-bold mt-2">$245.50</p>
-					</div>
-					<button class="bg-red-600 text-white mt-4 px-4 py-2 rounded hover:bg-blue-700">Withdraw</button>
-				</section>
-
-				<!-- Active Projects -->
-				<section class="bg-white dark:bg-gray-800 rounded-xl shadow p-6 lg:col-span-2">
-					<h2 class="text-lg font-semibold mb-2">📁 Active Projects</h2>
-					<ul class="list-disc list-inside text-sm space-y-1">
-						<li>Landing Page for TechCo</li>
-						<li>Translation - 3 pages</li>
-						<li>React Dashboard</li>
-					</ul>
-				</section>	
-				
-				<!-- Actions -->
-				<section class="bg-white dark:bg-gray-800 rounded-xl shadow p-6 flex flex-col justify-between">
-					<div>
-						<h2 class="text-lg font-semibold">Actions</h2>
-						<hr>
-					</div>
-					<button class="bg-blue-600 text-white mt-4 px-4 py-2 rounded hover:bg-blue-700" id="addProjectButton">Add Project</button>
-				</section>
-
-
 				<!-- Available Projects in Lobby -->
-				<section class="bg-white dark:bg-gray-800 rounded-xl shadow p-6 lg:col-span-3">
+				<section class="bg-white dark:bg-gray-800 rounded-xl shadow p-6 col-span-3">
 					<div class="flex items-center gap-4 mb-5">
-						<h2 class="text-lg font-semibold">📁 Active Lobby Projects</h2>
+						<div class="flex items-center gap-2">
+							<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+								<path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12.75V12A2.25 2.25 0 0 1 4.5 9.75h15A2.25 2.25 0 0 1 21.75 12v.75m-8.69-6.44-2.12-2.12a1.5 1.5 0 0 0-1.061-.44H4.5A2.25 2.25 0 0 0 2.25 6v12a2.25 2.25 0 0 0 2.25 2.25h15A2.25 2.25 0 0 0 21.75 18V9a2.25 2.25 0 0 0-2.25-2.25h-5.379a1.5 1.5 0 0 1-1.06-.44Z" />
+							</svg>								
+							<h2 class="text-lg font-semibold">Active Lobby Projects</h2>
+						</div>
 						<button class="bg-blue-600 text-white mt-1 px-1 py-1 rounded hover:bg-blue-700" id="refreshProjectButton">Refresh</button>
 					</div>
 					<hr>					
@@ -103,8 +58,8 @@
 								<th class="text-left">Title</th>
 								<!-- <th class="text-left">Description</th> -->
 								<th class="text-left">Client</th>
-								<th class="text-left">Posted At</th>
-								<th class="text-left">Status</th>
+								<th class="text-left hidden sm:table-cell">Posted At</th>
+								<th class="text-left hidden sm:table-cell">Status</th>
 								<th class="text-left">Budget</th>
 							</tr>
 						</thead>
@@ -113,9 +68,166 @@
 					</table>
 					<ul class="list-disc list-inside text-sm space-y-1" id="availableProjects">						
 					</ul>
-				</section>		
+				</section>	
 
+				<section class="bg-white dark:bg-gray-800 rounded-xl shadow p-6 col-span-3 lg:col-span-1">
+					<h2 class="text-lg font-semibold mb-4">Dashboard Details</h2>
+				  
+					<div class="space-y-4">
+					  <!-- Wallet Accordion -->
+					  <div class="rounded-lg">
+						<button class="w-full flex justify-between items-center p-2 font-semibold bg-gray-100 dark:bg-gray-700" onclick="toggleAccordion('walletSection')">
+						  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+							<path stroke-linecap="round" stroke-linejoin="round" d="M21 12a2.25 2.25 0 0 0-2.25-2.25H15a3 3 0 1 1-6 0H5.25A2.25 2.25 0 0 0 3 12m18 0v6a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 18v-6m18 0V9M3 12V9m18 0a2.25 2.25 0 0 0-2.25-2.25H5.25A2.25 2.25 0 0 0 3 9m18 0V6a2.25 2.25 0 0 0-2.25-2.25H5.25A2.25 2.25 0 0 0 3 6v3" />
+						  </svg>
+						  Wallet
+						  <span>+</span>
+						</button>
+						<div id="walletSection" class="overflow-hidden max-h-0 transition-all duration-500 ease-in-out px-4 bg-gray-50 dark:bg-gray-900">
+						  <p class="text-2xl font-bold mt-2">$245.50</p>
+						  <button class="bg-red-600 text-white mt-4 px-4 py-2 rounded hover:bg-blue-700">
+							Withdraw
+						  </button>
+						</div>
+					  </div>
+				  
+					  <!-- Profile Accordion -->
+					  <div class="rounded-lg">
+						<button class="w-full flex justify-between items-center p-2 font-semibold bg-gray-100 dark:bg-gray-700" onclick="toggleAccordion('profileSection')">
+						  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+							<path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+						  </svg>
+						  Profile
+						  <span>+</span>
+						</button>
+						<div id="profileSection" class="overflow-hidden max-h-0 transition-all duration-500 ease-in-out px-4 bg-gray-50 dark:bg-gray-900">
+						  <table class="w-full border border-gray-300">
+							<tr>
+							  <td class="border border-gray-300 text-sm font-semibold px-3 py-2">Name:</td>
+							  <td class="border border-gray-300 text-sm px-3 py-2"><span id="userName"></span></td>
+							</tr>
+							<tr>
+							  <td class="border border-gray-300 text-sm font-semibold px-3 py-2">Email:</td>
+							  <td class="border border-gray-300 text-sm px-3 py-2"><span id="userEmail"></span></td>
+							</tr>
+							<tr>
+							  <td class="border border-gray-300 text-sm font-semibold px-3 py-2">Role:</td>
+							  <td class="border border-gray-300 text-sm px-3 py-2"><span id="userRole"></span></td>
+							</tr>
+						  </table>
+						  <button class="bg-red-600 text-white mt-4 px-4 py-2 rounded hover:bg-blue-700">
+							Update Profile
+						  </button>
+						</div>
+					  </div>
+				  
+					</div>
+				  </section>
+				  
+				  <!-- Accordion Script -->
+				  <script>
+					function toggleAccordion(sectionId) {
+					  const section = document.getElementById(sectionId);
+					  
+					  if (section.classList.contains('max-h-0')) {
+						section.classList.remove('max-h-0');
+						section.classList.add('max-h-96'); // Add enough height for your content
+					  } else {
+						section.classList.remove('max-h-96');
+						section.classList.add('max-h-0');
+					  }
+					}
+				  </script>
+							  
 				
+				<!-- Notifications -->
+				<section class="bg-white dark:bg-gray-800 rounded-xl shadow p-6 col-span-3 lg:col-span-2">
+					<div class="flex items-center gap-4 mb-5">
+						<h2 class="text-lg font-semibold">🔔 Notifications</h2>
+						<button class="bg-blue-600 text-white mt-1 px-2 py-1 rounded hover:bg-blue-700" id="refreshMessages">Refresh</button>
+					</div>
+
+					<!-- Tabs -->
+					<div class="flex border-b mb-4">
+						<button id="systemTab" class="px-4 py-2 text-sm font-semibold text-blue-600 border-b-2 border-blue-600 focus:outline-none">
+							System Messages
+						</button>
+						<button id="userTab" class="px-4 py-2 text-sm font-semibold text-gray-600 hover:text-blue-600 focus:outline-none">
+							User Messages
+						</button>
+					</div>
+
+					<!-- Notification Lists -->
+					<div id="systemMessages" class="space-y-2 text-sm">
+						<ul class="list-disc list-inside">
+							Refreshing...
+						</ul>
+					</div>
+
+					<div id="userMessages" class="space-y-2 text-sm hidden">
+						<ul class="list-disc list-inside">
+							Refreshing...
+						</ul>
+					</div>
+				</section>
+
+				<!-- Script for tab switching -->
+				<script>
+					const systemTab = document.getElementById('systemTab');
+					const userTab = document.getElementById('userTab');
+					const systemMessages = document.getElementById('systemMessages');
+					const userMessages = document.getElementById('userMessages');
+
+					systemTab.addEventListener('click', () => {
+						systemMessages.classList.remove('hidden');
+						userMessages.classList.add('hidden');
+						systemTab.classList.add('text-blue-600', 'border-b-2', 'border-blue-600');
+						userTab.classList.remove('text-blue-600', 'border-b-2', 'border-blue-600');
+						userTab.classList.add('text-gray-600');
+					});
+
+					userTab.addEventListener('click', () => {
+						userMessages.classList.remove('hidden');
+						systemMessages.classList.add('hidden');
+						userTab.classList.add('text-blue-600', 'border-b-2', 'border-blue-600');
+						systemTab.classList.remove('text-blue-600', 'border-b-2', 'border-blue-600');
+						systemTab.classList.add('text-gray-600');
+					});
+				</script>				
+
+				<!-- Active Projects -->
+				<section class="bg-white dark:bg-gray-800 rounded-xl shadow p-6 col-span-3 lg:col-span-2">
+					<div class="flex items-center gap-4 mb-5">
+						<div class="flex items-center gap-2">
+							<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+								<path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12.75V12A2.25 2.25 0 0 1 4.5 9.75h15A2.25 2.25 0 0 1 21.75 12v.75m-8.69-6.44-2.12-2.12a1.5 1.5 0 0 0-1.061-.44H4.5A2.25 2.25 0 0 0 2.25 6v12a2.25 2.25 0 0 0 2.25 2.25h15A2.25 2.25 0 0 0 21.75 18V9a2.25 2.25 0 0 0-2.25-2.25h-5.379a1.5 1.5 0 0 1-1.06-.44Z" />
+							</svg>								
+							<h2 class="text-lg font-semibold">Projects taken up by you</h2>
+						</div>
+						<button class="bg-blue-600 text-white mt-1 px-1 py-1 rounded hover:bg-blue-700" id="refreshAssignProjectButton">Refresh</button>
+					</div>
+					<hr>
+					<br>
+					<ul class="list-disc list-inside text-sm space-y-1">
+						<li>Landing Page for TechCo</li>
+						<li>Translation - 3 pages</li>
+						<li>React Dashboard</li>
+					</ul>
+				</section>	
+				
+				<!-- Actions -->
+				<section class="bg-white dark:bg-gray-800 rounded-xl shadow p-6 flex flex-col justify-between col-span-3 lg:col-span-1">
+					<div>
+						<h2 class="text-lg font-semibold">Actions</h2>
+						<hr>
+					</div>
+					<button class="bg-blue-600 text-white mt-4 px-4 py-2 rounded hover:bg-blue-700" id="addProjectButton">Add Project</button>
+				</section>
+				
+				
+
+
+
 			</div>
 		</main>
 		<script>
@@ -161,8 +273,8 @@
 					trc.innerHTML=`
 						<td class="w-auto whitespace-nowrap">${project.title}</td>
 						<td class="w-auto whitespace-nowrap">${project.created_by}</td>
-						<td class="w-auto whitespace-nowrap">${project.created_at}</td>
-						<td class="w-auto whitespace-nowrap">${project.status}</td>
+						<td class="w-auto whitespace-nowrap hidden sm:table-cell">${project.created_at}</td>
+						<td class="w-auto whitespace-nowrap hidden sm:table-cell">${project.status}</td>
 						<td class="w-auto whitespace-nowrap">${project.budget}</td>
 						<td class="w-auto whitespace-nowrap">
 							<button class="bg-blue-600 text-white px-1 py-0 rounded hover:bg-blue-700" onclick='openModal(${JSON.stringify(project)})''>View</button>
@@ -199,6 +311,7 @@
 				document.getElementById('modalDesc').textContent = project.description;
 				document.getElementById('modalClient').textContent = project.created_by;
 				document.getElementById('modalStatus').textContent = project.status;
+				document.getElementById('modalPostedDate').textContent = project.created_at;
 			
 				const modal = document.getElementById('projectModal');
 				modal.classList.remove('hidden');
@@ -211,13 +324,57 @@
 						document.getElementById('bidButton').textContent = 'Bid on Project';
 					}
 				}
-			  }
+			}
 			
-			  function closeModal() {
+			function closeModal() {
 				const modal = document.getElementById('projectModal');
 				modal.classList.add('hidden');
 				modal.classList.remove('flex');
-			  }
+			}
+
+			async function fetchMessages(noteboard,type){			
+				const noteBoard = document.getElementById(noteboard);				
+				if(type === 'system'){
+					noteBoard.innerHTML = '';
+					const res = await fetch(`${API_BASE_URL}/messages/system/${userData.id}`, {
+						method: 'GET',
+					});
+					const messages = await res.json();
+					messages.forEach(message => {
+						const li = document.createElement('li');
+						if(message.severity === 'normal' || message.severity === 'info'){
+							li.className = 'bg-blue-100 dark:bg-blue-700 px-3 py-2 rounded';
+							li.textContent = "INFO: ";
+						}
+						else if(message.severity === 'warning'){
+							li.className = 'bg-yellow-100 dark:bg-yellow-700 px-3 py-2 rounded';
+							li.textContent = "WARN: ";
+						}
+						else if(message.severity === 'error'){
+							li.className = 'bg-red-100 dark:bg-red-700 px-3 py-2 rounded';
+							li.textContent = "ERR: ";
+						}
+						li.textContent += message.content;
+						noteBoard.appendChild(li);						
+					});
+				}
+			}
+
+			/*setInterval(() => {
+				fetchMessages('system');
+			}, 5000);*/
+			const refreshMessages = document.getElementById('refreshMessages');
+			refreshMessages.addEventListener('click', () => {
+				setTimeout(() => {
+					document.getElementById('systemMessages').innerHTML = 'Refreshing..';
+					document.getElementById('userMessages').innerHTML = 'Refreshing..';
+				}, 1000);
+				setTimeout(() => {
+					fetchMessages('systemMessages','system');
+				}, 2000);
+				//fetchMessages("systemMessages",'system');
+			});
+			fetchMessages('systemMessages','system');
 		</script>
 	</body>
 </html>
