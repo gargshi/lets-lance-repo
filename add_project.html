@@ -63,6 +63,10 @@
 				message.classList.remove("text-red-500");
 				message.classList.add("text-green-600");
 				form.reset();
+        setTimeout(() => {
+          message.textContent = "Redirecting to dashboard...";
+        }, 2000);
+        window.location.href = "dashboard.html";
 			} else {
 				throw new Error("Failed to add project");
 			}
